@@ -27,14 +27,26 @@ export const store = new Vuex.Store({
   },
   actions: {
     addTodo (store, context) {
-      let idx = store.state.todos[store.state.todos.length - 1].id + 1
-      db.ref(`todos/${idx}`).set({
-        id: idx,
-        task: context.task,
-        assignee: context.assignee,
-        score: context.score,
-        status: context.status
-      })
+      if (store.state.todos.length > 0) {
+        let idx = store.state.todos[store.state.todos.length - 1].id + 1
+        db.ref(`todos/${idx}`).set({
+          id: idx,
+          task: context.task,
+          description: context.description,
+          assignee: context.assignee,
+          score: context.score,
+          status: context.status
+        })
+      } else {
+        db.ref(`todos/1`).set({
+          id: 1,
+          task: context.task,
+          description: context.description,
+          assignee: context.assignee,
+          score: context.score,
+          status: context.status
+        })
+      }
     },
     removeTodo (state, context) {
       db.ref(`todos/${context}`).remove()
@@ -43,6 +55,7 @@ export const store = new Vuex.Store({
       db.ref(`todos/${context.id}`).set({
         id: context.id,
         task: context.task,
+        description: context.description,
         assignee: context.assignee,
         score: context.score,
         status: 'backlog'
@@ -52,6 +65,7 @@ export const store = new Vuex.Store({
       db.ref(`todos/${context.id}`).set({
         id: context.id,
         task: context.task,
+        description: context.description,
         assignee: context.assignee,
         score: context.score,
         status: 'todo'
@@ -61,6 +75,7 @@ export const store = new Vuex.Store({
       db.ref(`todos/${context.id}`).set({
         id: context.id,
         task: context.task,
+        description: context.description,
         assignee: context.assignee,
         score: context.score,
         status: 'doing'
@@ -70,6 +85,7 @@ export const store = new Vuex.Store({
       db.ref(`todos/${context.id}`).set({
         id: context.id,
         task: context.task,
+        description: context.description,
         assignee: context.assignee,
         score: context.score,
         status: 'done'

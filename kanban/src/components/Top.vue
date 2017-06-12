@@ -8,6 +8,8 @@
         <form>
           <p>Task: </p>
           <b-form-input type="text" placeholder="Enter task name" v-model="task"></b-form-input><br>
+          <p>Description: </p>
+          <b-form-input type="text" placeholder="Enter task description" v-model="description"></b-form-input><br>
           <p>Assigned To: </p>
           <b-form-input type="text" placeholder="Enter task assignee" v-model="assignee"></b-form-input><br>
           <p>Score:</p>
@@ -25,7 +27,8 @@ export default {
     return {
       task: null,
       assignee: null,
-      score: null
+      score: null,
+      description: null
     }
   },
   methods: {
@@ -34,11 +37,13 @@ export default {
       if (this.task && this.assignee && !isNaN(this.score)) {
         let payload = {
           task: this.task,
+          description: this.description,
           assignee: this.assignee,
           score: this.score,
           status: 'backlog'
         }
         this.task = null
+        this.description = null
         this.assignee = null
         this.score = null
         this.$store.dispatch('addTodo', payload)

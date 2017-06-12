@@ -1,16 +1,16 @@
 <template lang="html">
   <div class="container">
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-xs-12 col-md-3">
         <BackLog></BackLog>
       </div>
-      <div class="col-md-3">
+      <div class="col-xs-12 col-md-3">
         <ToDo></ToDo>
       </div>
-      <div class="col-md-3">
+      <div class="col-xs-12 col-md-3">
         <Doing></Doing>
       </div>
-      <div class="col-md-3">
+      <div class="col-xs-12 col-md-3">
         <Done></Done>
       </div>
     </div>
